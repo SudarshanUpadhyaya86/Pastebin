@@ -15,6 +15,14 @@ app.get("/", (req, res) => {
   res.send("PasteBin API is running 🚀");
 });
 
+app.get("/healthz", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Pastebin backend is running",
+    timestamp: new Date().toISOString(),
+  });
+});
+
 // API routes
 app.use("/pastes", pasteRoutes);
 
