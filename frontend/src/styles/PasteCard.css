@@ -31,3 +31,12 @@
   background: crimson;
   color: white;
 }
+
+.share {
+  background: #28a745;
+  color: white;
+}
+
+.share:hover {
+  background: #218838;
+}
