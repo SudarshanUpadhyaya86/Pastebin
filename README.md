@@ -254,9 +254,9 @@ Hosted on **Supabase**
 
 **H. Sudarshan Upadhyaya**
 
-GitHub: https://github.com/YOUR_USERNAME
+GitHub: https://github.com/SudarshanUpadhyaya86
 
-LinkedIn: https://linkedin.com/in/YOUR_PROFILE
+LinkedIn: https://linkedin.com/in/h-sudarshan-upadhyaya
 
 ---
 
