@@ -1,0 +1,35 @@
+.view-container {
+  width: 900px;
+  margin: 40px auto;
+}
+
+.view-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.08);
+}
+
+.view-card h1 {
+  margin-bottom: 10px;
+}
+
+.view-card small {
+  color: gray;
+}
+
+.view-card pre {
+  margin: 25px 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: inherit;
+  line-height: 1.6;
+}
+
+.view-card button {
+  padding: 10px 20px;
+  border: none;
+  background: #0066ff;
+  color: white;
+  border-radius: 6px;
+}
