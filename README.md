@@ -204,24 +204,6 @@ flowchart TD
 
 ---
 
-# 📷 Screenshots
-
-Add screenshots here.
-
-Example:
-
-```
-screenshots/
-
-Home.png
-
-ViewPaste.png
-
-Swagger.png
-```
-
----
-
 # 🌍 Deployment
 
 ## Frontend
