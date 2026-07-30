@@ -192,19 +192,23 @@ A successful response indicates that the backend service is operational and read
 
 ---
 
-# 📖 API Documentation
+## 📖 API Documentation
 
-Swagger UI is available at:
+Interactive API documentation is available through Swagger UI.
+
+### Local
 
 ```
 http://localhost:5000/api-docs
 ```
 
-or
+### Production
 
 ```
 https://pastebin-backend-su7v.onrender.com/api-docs
 ```
+
+The documentation includes all available endpoints, request parameters, and example responses.
 
 ---
 
