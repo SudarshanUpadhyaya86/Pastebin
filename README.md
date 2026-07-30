@@ -185,8 +185,6 @@ https://pastebin-backend-su7v.onrender.com/api-docs
 
 # 🔄 Application Architecture
 
-## 🏗️ System Architecture
-
 ```mermaid
 flowchart TD
     A[User] --> B[React Frontend<br/>Vite + Axios]
