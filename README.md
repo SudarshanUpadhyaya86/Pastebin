@@ -153,6 +153,7 @@ Stop the containers:
 ```bash
 docker compose down
 ```
+---
 
 ## ❤️ Health Check
 
