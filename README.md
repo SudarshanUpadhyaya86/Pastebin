@@ -154,6 +154,40 @@ Stop the containers:
 docker compose down
 ```
 
+## ❤️ Health Check
+
+The backend provides a health check endpoint that can be used to verify whether the service is running.
+
+### Endpoint
+
+```
+GET /healthz
+```
+
+### Local
+
+```
+http://localhost:5000/healthz
+```
+
+### Production
+
+```
+https://pastebin-backend-su7v.onrender.com/healthz
+```
+
+### Sample Response
+
+```json
+{
+  "status": "OK",
+  "message": "Pastebin backend is running",
+  "timestamp": "2026-07-30T18:15:42.123Z"
+}
+```
+
+A successful response indicates that the backend service is operational and ready to accept API requests.
+
 ---
 
 # 📖 API Documentation
