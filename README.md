@@ -19,7 +19,6 @@ A modern PasteBin web application that allows users to create, view, share, and 
 - 🔍 View individual pastes
 - 🗑 Delete pastes
 - 🔗 Share pastes using the Web Share API
-- 📱 Mobile-friendly interface
 - 📖 Swagger API documentation
 - 🐳 Docker support
 - ☁️ Cloud deployment
@@ -88,7 +87,7 @@ Pastebin/
 ## Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Pastebin.git
+git clone https://github.com/SudarshanUpadhyaya86/Pastebin.git
 cd Pastebin
 ```
 
