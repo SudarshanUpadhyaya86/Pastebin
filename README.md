@@ -185,19 +185,21 @@ https://pastebin-backend-su7v.onrender.com/api-docs
 
 # 🔄 Application Architecture
 
-```
-                User
-                  │
-                  ▼
-          React + Vite Frontend
-                  │
-             Axios HTTP Client
-                  │
-                  ▼
-        Express.js REST API
-                  │
-                  ▼
-       Supabase PostgreSQL Database
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+    A[User] --> B[React Frontend<br/>Vite + Axios]
+    B -->|HTTP Requests| C[Express.js REST API]
+    C --> D[Supabase PostgreSQL Database]
+
+    C --> E[Swagger API Documentation]
+
+    F[Docker Compose] --> B
+    F --> C
+
+    G[Vercel Deployment] --> B
+    H[Render Deployment] --> C
 ```
 
 ---
