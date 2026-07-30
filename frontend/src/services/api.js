@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://pastebin-backend-su7v.onrender.com",
 });
 
 export const getAllPastes = () => api.get("/pastes");
