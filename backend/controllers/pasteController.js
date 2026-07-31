@@ -69,6 +69,40 @@ const getPasteById = async (req, res) => {
   }
 };
 
+// Update a paste
+const updatePaste = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content } = req.body;
+
+    if (!title || !content) {
+      return res.status(400).json({
+        message: "Title and content are required",
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("pastes")
+      .update({ title, content, updated_at: new Date() })
+      .eq("id", id)
+      .select();
+
+    if (error) throw error;
+
+    if (data.length === 0) {
+      return res.status(404).json({
+        message: "Paste not found",
+      });
+    }
+
+    res.status(200).json(data[0]);
+  } catch (err) {
+    res.status(500).json({
+      error: err.message,
+    });
+  }
+};
+
 // Delete a paste
 const deletePaste = async (req, res) => {
   try {
@@ -95,5 +129,6 @@ module.exports = {
   createPaste,
   getAllPastes,
   getPasteById,
+  updatePaste,
   deletePaste,
 };

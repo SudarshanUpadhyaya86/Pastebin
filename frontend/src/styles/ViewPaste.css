@@ -61,6 +61,7 @@
   display: flex;
   gap: 12px;
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -80,14 +81,14 @@
 }
 
 .btn-copy {
-  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+  background: #F59E0B;
   color: white;
 }
 
 .btn-copy:hover {
-  background: #3B82F6;
+  background: #D97706;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3);
 }
 
 .btn-copy.copied {
@@ -103,6 +104,16 @@
 .btn-share:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+  color: white;
+}
+
+.btn-edit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.3);
 }
 
 .btn-back {
@@ -163,6 +174,111 @@
 
 .paste-content::-webkit-scrollbar-thumb:hover {
   background: #9CA3AF;
+}
+
+/* Edit Mode */
+.edit-header {
+  padding: 32px 32px 24px;
+  border-bottom: 2px solid #F3F4F6;
+}
+
+.edit-header h2 {
+  margin: 0;
+  font-size: 28px;
+  color: #0F172A;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.edit-form {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  color: #0F172A;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 14px 16px;
+  border: 1.5px solid #E5E7EB;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  color: #0F172A;
+  background: #FAFAFA;
+  transition: all 0.2s ease;
+  line-height: 1.6;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #9CA3AF;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3B82F6;
+  background: #FFFFFF;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 320px;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+}
+
+.btn-save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+}
+
+.btn-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  background: #F3F4F6;
+  color: #0F172A;
+  border: 1px solid #E5E7EB;
+}
+
+.btn-cancel:hover:not(:disabled) {
+  background: #E5E7EB;
+  border-color: #D1D5DB;
+  transform: translateY(-2px);
+}
+
+.btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* Loading State */
@@ -284,5 +400,17 @@
   .paste-content {
     font-size: 12px;
     padding: 16px;
+  }
+
+  .edit-form {
+    padding: 24px;
+  }
+
+  .edit-actions {
+    flex-direction: column;
+  }
+
+  .edit-actions button {
+    width: 100%;
   }
 }

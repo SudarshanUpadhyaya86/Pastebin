@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import { getPaste } from "../services/api";
+import { getPaste, updatePaste } from "../services/api";
 import "../styles/ViewPaste.css";
 
 function ViewPaste() {
@@ -11,6 +11,10 @@ function ViewPaste() {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editTitle, setEditTitle] = useState("");
+  const [editContent, setEditContent] = useState("");
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     fetchPaste();
@@ -20,6 +24,8 @@ function ViewPaste() {
     try {
       const response = await getPaste(id);
       setPaste(response.data);
+      setEditTitle(response.data.title);
+      setEditContent(response.data.content);
     } catch (error) {
       setNotFound(true);
     } finally {
@@ -54,6 +60,43 @@ function ViewPaste() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleSaveEdit = async () => {
+    if (!editTitle.trim() || !editContent.trim()) {
+      alert("Title and content cannot be empty");
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const response = await updatePaste(id, {
+        title: editTitle,
+        content: editContent,
+      });
+      setPaste(response.data);
+      setIsEditing(false);
+      alert("Paste updated successfully!");
+    } catch (error) {
+      console.error(error);
+
+      if (error.response) {
+        console.log("Status:", error.response.status);
+        console.log("Data:", error.response.data);
+        alert(JSON.stringify(error.response.data));
+      } else {
+        console.log(error);
+        alert(error.message);
+      }
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCancelEdit = () => {
+    setEditTitle(paste.title);
+    setEditContent(paste.content);
+    setIsEditing(false);
   };
 
   if (loading) {
@@ -96,6 +139,63 @@ function ViewPaste() {
     minute: "2-digit",
   });
 
+  if (isEditing) {
+    return (
+      <>
+        <Navbar />
+        <div className="view-container">
+          <div className="view-card">
+            <div className="edit-header">
+              <h2>Edit Paste</h2>
+            </div>
+
+            <div className="edit-form">
+              <div className="form-group">
+                <label htmlFor="edit-title">Title</label>
+                <input
+                  id="edit-title"
+                  type="text"
+                  value={editTitle}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  placeholder="Paste title"
+                  maxLength={100}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="edit-content">Content</label>
+                <textarea
+                  id="edit-content"
+                  value={editContent}
+                  onChange={(e) => setEditContent(e.target.value)}
+                  placeholder="Paste content"
+                  rows="12"
+                />
+              </div>
+
+              <div className="edit-actions">
+                <button
+                  className="btn btn-save"
+                  onClick={handleSaveEdit}
+                  disabled={saving}
+                >
+                  {saving ? "Saving..." : "Save Changes"}
+                </button>
+                <button
+                  className="btn btn-cancel"
+                  onClick={handleCancelEdit}
+                  disabled={saving}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Navbar />
@@ -113,14 +213,17 @@ function ViewPaste() {
             </div>
 
             <div className="view-actions">
-              <button 
-                className={`btn btn-copy ${copied ? 'copied' : ''}`}
+              <button
+                className={`btn btn-copy ${copied ? "copied" : ""}`}
                 onClick={handleCopy}
               >
-                {copied ? '✓ Copied' : 'Copy'}
+                {copied ? "✓ Copied" : "Copy"}
               </button>
               <button className="btn btn-share" onClick={handleShare}>
                 Share
+              </button>
+              <button className="btn btn-edit" onClick={() => setIsEditing(true)}>
+                Edit
               </button>
               <Link to="/">
                 <button className="btn btn-back">Back</button>

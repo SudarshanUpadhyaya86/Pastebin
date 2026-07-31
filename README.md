@@ -105,8 +105,8 @@ Create a `.env` file inside the backend directory.
 Example:
 
 ```env
-SUPABASE_URL = https://zsrczsaujyvythkcyglx.supabase.co
-SUPABASE_KEY = b_publishable_0SQSgzJfFrxwCNCAJtajmw_AP5xayzP
+SUPABASE_URL=YOUR_SUPABASE_URL
+SUPABASE_KEY=YOUR_SUPABASE_ANON_KEY
 PORT=5000
 ```
 

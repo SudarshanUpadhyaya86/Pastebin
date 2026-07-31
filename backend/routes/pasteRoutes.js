@@ -5,6 +5,7 @@ const {
   createPaste,
   getAllPastes,
   getPasteById,
+  updatePaste,
   deletePaste,
 } = require("../controllers/pasteController");
 
@@ -75,6 +76,45 @@ router.get("/", getAllPastes);
  *         description: Paste not found
  */
 router.get("/:id", getPasteById);
+
+/**
+ * @swagger
+ * /pastes/{id}:
+ *   put:
+ *     summary: Update a paste
+ *     tags: [Pastes]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Paste UUID
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - title
+ *               - content
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 example: Updated Title
+ *               content:
+ *                 type: string
+ *                 example: Updated content
+ *     responses:
+ *       200:
+ *         description: Paste updated successfully
+ *       400:
+ *         description: Title and content are required
+ *       404:
+ *         description: Paste not found
+ */
+router.put("/:id", updatePaste);
 
 /**
  * @swagger
