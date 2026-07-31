@@ -219,6 +219,7 @@ The documentation includes all available endpoints, request parameters, and exam
 | POST | `/pastes` | Create a new paste |
 | GET | `/pastes` | Get all pastes |
 | GET | `/pastes/:id` | Get a single paste |
+| PUT | `/pastes/:id` | Update a paste |
 | DELETE | `/pastes/:id` | Delete a paste |
 
 ---
