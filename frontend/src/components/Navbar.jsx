@@ -4,9 +4,12 @@ import "../styles/Navbar.css";
 function Navbar() {
   return (
     <nav className="navbar">
-      <Link to="/" className="logo">
-        PasteBin
-      </Link>
+      <div className="navbar-content">
+        <Link to="/" className="logo">
+          <span className="logo-icon">{'</>'}</span>
+          <span className="logo-text">PasteBin</span>
+        </Link>
+      </div>
     </nav>
   );
 }

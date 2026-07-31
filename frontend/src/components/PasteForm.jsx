@@ -5,6 +5,7 @@ import "../styles/PasteForm.css";
 function PasteForm({ refreshPastes }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +15,7 @@ function PasteForm({ refreshPastes }) {
       return;
     }
 
+    setLoading(true);
     try {
       await createPaste({
         title,
@@ -22,33 +24,49 @@ function PasteForm({ refreshPastes }) {
 
       setTitle("");
       setContent("");
-
       refreshPastes();
+      alert("Paste created successfully!");
     } catch (error) {
       console.error(error);
       alert("Failed to create paste");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <form className="paste-form" onSubmit={handleSubmit}>
-      <h2>Create Paste</h2>
+      <div className="form-header">
+        <h2>Create a Paste</h2>
+        <p className="form-subtitle">Share code, text, or notes instantly</p>
+      </div>
 
-      <input
-        type="text"
-        placeholder="Paste title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
+      <div className="form-group">
+        <label htmlFor="title">Title</label>
+        <input
+          id="title"
+          type="text"
+          placeholder="Give your paste a title..."
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          maxLength={100}
+        />
+      </div>
 
-      <textarea
-        rows="8"
-        placeholder="Write your paste..."
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
+      <div className="form-group">
+        <label htmlFor="content">Content</label>
+        <textarea
+          id="content"
+          rows="12"
+          placeholder="Paste your code or text here..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+      </div>
 
-      <button>Create Paste</button>
+      <button type="submit" className="btn-create" disabled={loading}>
+        {loading ? "Creating..." : "Create Paste"}
+      </button>
     </form>
   );
 }

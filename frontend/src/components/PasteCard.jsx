@@ -4,14 +4,14 @@ import "../styles/PasteCard.css";
 
 function PasteCard({ paste, refreshPastes }) {
   const handleDelete = async () => {
-    if (!window.confirm("Delete this paste?")) return;
+    if (!window.confirm("Delete this paste? This cannot be undone.")) return;
 
     try {
       await deletePaste(paste.id);
       refreshPastes();
     } catch (error) {
       console.error(error);
-      alert("Delete failed");
+      alert("Failed to delete paste");
     }
   };
 
@@ -34,30 +34,52 @@ function PasteCard({ paste, refreshPastes }) {
     }
   };
 
+  const formattedDate = new Date(paste.created_at).toLocaleString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
   return (
-    <div className="card">
-      <h3>{paste.title}</h3>
+    <div className="paste-card">
+      <div className="card-header">
+        <div className="card-title-section">
+          <h3 className="card-title">{paste.title}</h3>
+          <p className="card-meta">{formattedDate}</p>
+        </div>
+      </div>
 
-      <p>
-        {paste.content.length > 120
-          ? paste.content.substring(0, 120) + "..."
-          : paste.content}
-      </p>
+      <div className="card-content">
+        <p className="card-preview">
+          {paste.content.length > 150
+            ? paste.content.substring(0, 150) + "..."
+            : paste.content}
+        </p>
+      </div>
 
-      <small>{new Date(paste.created_at).toLocaleString()}</small>
+      <div className="card-footer">
+        <div className="card-stats">
+          <span className="stat-item">
+            <span className="stat-label">Characters:</span>
+            <span className="stat-value">{paste.content.length}</span>
+          </span>
+        </div>
 
-      <div className="buttons">
-        <Link to={`/paste/${paste.id}`}>
-          <button>View</button>
-        </Link>
+        <div className="card-actions">
+          <Link to={`/paste/${paste.id}`} className="link-button">
+            <button className="btn btn-view">View</button>
+          </Link>
 
-        <button className="share" onClick={handleShare}>
-          Share
-        </button>
+          <button className="btn btn-share" onClick={handleShare}>
+            Share
+          </button>
 
-        <button className="delete" onClick={handleDelete}>
-          Delete
-        </button>
+          <button className="btn btn-delete" onClick={handleDelete}>
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );

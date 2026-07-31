@@ -10,13 +10,18 @@ import "../styles/Home.css";
 
 function Home() {
   const [pastes, setPastes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const loadPastes = async () => {
     try {
+      setLoading(true);
       const response = await getAllPastes();
-      setPastes(response.data);
+      setPastes(response.data || []);
     } catch (error) {
       console.error(error);
+      setPastes([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -31,10 +36,17 @@ function Home() {
       <div className="container">
         <PasteForm refreshPastes={loadPastes} />
 
-        <PasteList
-          pastes={pastes}
-          refreshPastes={loadPastes}
-        />
+        {loading ? (
+          <div className="loading-section">
+            <div className="spinner-small"></div>
+            <p>Loading pastes...</p>
+          </div>
+        ) : (
+          <PasteList
+            pastes={pastes}
+            refreshPastes={loadPastes}
+          />
+        )}
       </div>
     </>
   );

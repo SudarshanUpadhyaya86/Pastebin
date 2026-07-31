@@ -10,6 +10,7 @@ function ViewPaste() {
   const [paste, setPaste] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     fetchPaste();
@@ -26,12 +27,44 @@ function ViewPaste() {
     }
   };
 
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(paste.content);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (error) {
+      console.error(error);
+      alert("Failed to copy to clipboard");
+    }
+  };
+
+  const handleShare = async () => {
+    const url = `${window.location.origin}/paste/${id}`;
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: paste.title,
+          text: "Check out this paste!",
+          url,
+        });
+      } else {
+        await navigator.clipboard.writeText(url);
+        alert("Link copied to clipboard!");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   if (loading) {
     return (
       <>
         <Navbar />
         <div className="view-container">
-          <h2>Loading...</h2>
+          <div className="loading-state">
+            <div className="spinner"></div>
+            <p>Loading paste...</p>
+          </div>
         </div>
       </>
     );
@@ -42,15 +75,26 @@ function ViewPaste() {
       <>
         <Navbar />
         <div className="view-container">
-          <h2>Paste not found</h2>
-
-          <Link to="/">
-            <button>Go Home</button>
-          </Link>
+          <div className="error-state">
+            <div className="error-icon">⚠️</div>
+            <h2>Paste not found</h2>
+            <p>The paste you're looking for doesn't exist or has been deleted.</p>
+            <Link to="/">
+              <button className="btn-home">Back to Home</button>
+            </Link>
+          </div>
         </div>
       </>
     );
   }
+
+  const formattedDate = new Date(paste.created_at).toLocaleString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
   return (
     <>
@@ -58,17 +102,35 @@ function ViewPaste() {
 
       <div className="view-container">
         <div className="view-card">
-          <h1>{paste.title}</h1>
+          <div className="view-header">
+            <div className="header-content">
+              <h1 className="view-title">{paste.title}</h1>
+              <p className="view-meta">
+                Created {formattedDate}
+                <span className="separator">•</span>
+                <span className="character-count">{paste.content.length} characters</span>
+              </p>
+            </div>
 
-          <small>
-            {new Date(paste.created_at).toLocaleString()}
-          </small>
+            <div className="view-actions">
+              <button 
+                className={`btn btn-copy ${copied ? 'copied' : ''}`}
+                onClick={handleCopy}
+              >
+                {copied ? '✓ Copied' : 'Copy'}
+              </button>
+              <button className="btn btn-share" onClick={handleShare}>
+                Share
+              </button>
+              <Link to="/">
+                <button className="btn btn-back">Back</button>
+              </Link>
+            </div>
+          </div>
 
-          <pre>{paste.content}</pre>
-
-          <Link to="/">
-            <button>Back</button>
-          </Link>
+          <div className="view-content">
+            <pre className="paste-content">{paste.content}</pre>
+          </div>
         </div>
       </div>
     </>

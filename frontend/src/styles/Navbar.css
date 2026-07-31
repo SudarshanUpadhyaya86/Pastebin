@@ -1,12 +1,50 @@
 .navbar {
-  background: #222;
-  color: white;
-  padding: 18px 40px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #0F172A;
+  transition: opacity 0.2s ease;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.logo:hover {
+  opacity: 0.7;
+}
+
+.logo-icon {
+  font-size: 22px;
+  background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+.logo-text {
+  background: linear-gradient(135deg, #3B82F6 0%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
 }
