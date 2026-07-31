@@ -12,17 +12,19 @@ A modern PasteBin web application that allows users to create, view, share, and 
 
 ---
 
-# ✨ Features
+## ✨ Features
 
 - 📝 Create text pastes
 - 📋 View all pastes
 - 🔍 View individual pastes
-- 🗑 Delete pastes
+- ✏️ Update existing pastes
+- 🗑️ Delete pastes
 - 🔗 Share pastes using the Web Share API
+- 📱 Mobile-responsive design
 - 📖 Swagger API documentation
 - 🐳 Docker support
 - ☁️ Cloud deployment
-- ⚡ Fast React frontend using Vite
+- ⚡ Fast React frontend powered by Vite
 
 ---
 
