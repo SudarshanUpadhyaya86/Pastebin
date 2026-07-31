@@ -259,6 +259,22 @@ Hosted on **Supabase**
 
 ---
 
+# 🧭 Design Decisions
+
+**No authentication.** Pastes are public and unowned by design, mirroring the
+original pastebin.com model — anyone can create, view, edit, or delete any
+paste via its UUID. This was a deliberate scope decision for this challenge
+rather than an oversight: adding auth (e.g. Supabase Auth + row-level
+security) is the natural next step and is called out under Future
+Improvements below, but was left out to keep the surface area focused on
+core CRUD, API design, and containerization.
+
+**Supabase over a self-managed DB.** Chosen for a managed Postgres instance
+with a generous free tier and a JS client that removes the need to hand-roll
+a connection pool / migrations for a project this size.
+
+---
+
 # 📌 Future Improvements
 
 - User authentication
