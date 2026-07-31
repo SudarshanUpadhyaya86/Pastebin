@@ -270,6 +270,7 @@ add next — see Future Improvements below.
 **Supabase over a self-managed DB.** Chosen for a managed Postgres instance
 with a generous free tier and a JS client that removes the need to hand-roll
 a connection pool / migrations for a project this size.
+
 ---
 
 # 📌 Future Improvements
