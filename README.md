@@ -95,6 +95,26 @@ cd Pastebin
 
 ---
 
+# Database Setup (Supabase)
+
+1. Create a new Supabase project.
+2. Open the **SQL Editor**.
+3. Run the following SQL script to create the required table:
+
+```sql
+CREATE TABLE pastes (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    title TEXT NOT NULL,
+    content TEXT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+```
+
+4. Disable **Row Level Security (RLS)** for the `pastes` table (or configure appropriate policies if you wish to keep RLS enabled).
+
+---
+
 # Backend Setup
 
 ```bash
