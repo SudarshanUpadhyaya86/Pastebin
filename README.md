@@ -84,16 +84,6 @@ Pastebin/
 
 ---
 
-# 🚀 Getting Started
-
-## Clone the repository
-
-```bash
-git clone https://github.com/SudarshanUpadhyaya86/Pastebin.git
-cd Pastebin
-```
-
----
 
 # Database Setup (Supabase)
 
@@ -116,6 +106,16 @@ CREATE TABLE pastes (
 ---
 
 # Backend Setup
+# 🚀 Getting Started
+
+## Clone the repository
+
+```bash
+git clone https://github.com/SudarshanUpadhyaya86/Pastebin.git
+cd Pastebin
+```
+
+---
 
 ```bash
 cd backend
