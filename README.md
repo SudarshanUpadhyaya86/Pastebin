@@ -84,6 +84,18 @@ Pastebin/
 
 ---
 
+# Backend Setup
+# 🚀 Getting Started
+
+## Clone the repository
+
+```bash
+git clone https://github.com/SudarshanUpadhyaya86/Pastebin.git
+cd Pastebin
+```
+
+---
+
 
 # Database Setup (Supabase)
 
@@ -102,18 +114,6 @@ CREATE TABLE pastes (
 ```
 
 4. Disable **Row Level Security (RLS)** for the `pastes` table (or configure appropriate policies if you wish to keep RLS enabled).
-
----
-
-# Backend Setup
-# 🚀 Getting Started
-
-## Clone the repository
-
-```bash
-git clone https://github.com/SudarshanUpadhyaya86/Pastebin.git
-cd Pastebin
-```
 
 ---
 
