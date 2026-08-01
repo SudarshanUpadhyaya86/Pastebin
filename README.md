@@ -84,7 +84,6 @@ Pastebin/
 
 ---
 
-# Backend Setup
 # 🚀 Getting Started
 
 ## Clone the repository
@@ -117,6 +116,8 @@ CREATE TABLE pastes (
 
 ---
 
+
+# Backend Setup
 ```bash
 cd backend
 npm install
